@@ -27,6 +27,10 @@ const app = Vue.createApp({
             if (this.newTask.text.length >= 4) {
                 this.tasks.push(newTask);
                 this.error = false;
+                // prova
+                const input = document.querySelector(".form-input").value;
+                input.innerHTML = "";
+                console.log(input)
 
             } else {
                 this.error = true;
@@ -43,6 +47,7 @@ const app = Vue.createApp({
             let doneTaskEl = this.newTask.done = true;
             console.log(doneTaskEl);
         }
+
 
     }
 

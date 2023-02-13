@@ -32,56 +32,58 @@
 
 <body>
 	<div id="root">
+		<div class="all-in">
 
-		<div class="container">
+			<div class="container">
 
-			<div class="nav-bar container-nav d-flex justify-content-center mt-3">
-				<a class="nav-logo" href="#">
-					<img src="./img/Logo.png" alt="logo">
-				</a>
+				<div class="nav-bar container-nav d-flex justify-content-center mt-3">
+					<a class="nav-logo" href="#">
+						<img src="./img/Logo.png" alt="logo">
+					</a>
+				</div>
 			</div>
-		</div>
-		<div class="container main-area mt-3">
-			<div v-if="error" class="alert alert-danger" role="alert">
-				Inserisci almeno 4 caratteri!
+			<div class="container main-area mt-3">
+				<div v-if="error" class="alert alert-danger" role="alert">
+					Inserisci almeno 4 caratteri!
+				</div>
+				<!-- INPUT & BUTTON -->
+				<h2>Add Tasks</h2>
+				<div class="input-group mb-3">
+					<!-- Prendi il valore text in newTask -->
+					<input @keyUp.enter="addTask()" v-model="newTask.text" type="text" class="form-control form-input"
+						placeholder="New Task" aria-label="Recipient's username" aria-describedby="button-addon2">
+					<!-- Button al click aggiungi la new Task- AGGIUNGI-->
+					<button @click="addTask()" class="btn add-task-btn" type="button" id="button-addon2">Add
+						Task</button>
+				</div>
+				<!-- TASKS -->
+				<h3>Tasks</h3>
+				<div class="tasks">
+
+					<ol class="list-group list-group-numbered">
+						<!-- per ogni task, index dell'oggetto Tasks -->
+
+						<li v-for="(task, index) in tasks" class="list-group-item d-flex align-items-center">
+							<span :class="((newTask.done)?'did-it': '')">{{task.text}}</span>
+
+
+
+							<div class="icons d-flex align-items-center  ms-auto">
+								<!-- Sbarra l'elemento - SBARRA -->
+								<span @click="doneTask(task, index)" class="badge done rounded-pill d-flex"><i
+										class="fa-solid fa-circle-check"></i></span>
+
+								<!-- Rimuovi elemento - RIMUOVI -->
+								<span @click="removeTask(index)" class="badge cancel rounded-pill d-flex"><i
+										class="fa-solid fa-trash-can"></i></span>
+							</div>
+						</li>
+
+					</ol>
+				</div>
+
+
 			</div>
-			<!-- INPUT & BUTTON -->
-			<h2>Add Tasks</h2>
-			<div class="input-group mb-3">
-				<!-- Prendi il valore text in newTask -->
-				<input @keyUp.enter="addTask()" v-model="newTask.text" type="text" class="form-control"
-					placeholder="New Task" aria-label="Recipient's username" aria-describedby="button-addon2">
-				<!-- Button al click aggiungi la new Task- AGGIUNGI-->
-				<button @click="addTask()" class="btn add-task-btn" type="button" id="button-addon2">Add
-					Task</button>
-			</div>
-			<!-- TASKS -->
-			<h3>Tasks</h3>
-			<div class="tasks">
-
-				<ol class="list-group list-group-numbered">
-					<!-- per ogni task, index dell'oggetto Tasks -->
-
-					<li v-for="(task, index) in tasks" class="list-group-item d-flex align-items-center">
-						<span :class="(newTask.done)?'did-it': ''">{{task.text}}</span>
-
-
-
-						<div class="icons d-flex align-items-center  ms-auto">
-							<!-- Sbarra l'elemento - SBARRA -->
-							<span @click="doneTask(task, index)" class="badge done rounded-pill d-flex"><i
-									class="fa-solid fa-circle-check"></i></span>
-
-							<!-- Rimuovi elemento - RIMUOVI -->
-							<span @click="removeTask(index)" class="badge cancel rounded-pill d-flex"><i
-									class="fa-solid fa-trash-can"></i></span>
-						</div>
-					</li>
-
-				</ol>
-			</div>
-
-
 		</div>
 
 
