@@ -48,8 +48,8 @@
 				<!-- Prendi il valore text in newTask -->
 				<input v-model="newTask.text" type="text" class="form-control" placeholder="New Task"
 					aria-label="Recipient's username" aria-describedby="button-addon2">
-				<!-- Button al click aggiungi la new Task-->
-				<button @click="addTask()" cclass="btn btn-outline-secondary" type="button" id="button-addon2">Add
+				<!-- Button al click aggiungi la new Task- AGGIUNGI-->
+				<button @click="addTask()" class="btn add-task-btn" type="button" id="button-addon2">Add
 					Task</button>
 			</div>
 			<!-- TASKS -->
@@ -59,11 +59,18 @@
 				<ol class="list-group list-group-numbered">
 					<!-- per ogni task, index dell'oggetto Tasks -->
 
-					<li v-for="(task, index) in tasks" class="list-group-item d-flex align-items-center">
+					<li v-for="(task, index) in tasks" class="list-group-item d-flex align-items-center"
+						:class="(tasks.done)?'did-it': ''">
 						{{task}}
 
-						<span @click="removeTask(index)" class="badge cancel rounded-pill ms-auto d-flex"><i
-								class="fa-solid fa-trash-can"></i></span>
+						<div class="icons d-flex align-items-center  ms-auto">
+
+							<span @click="doneTask(index)" class="badge done rounded-pill d-flex"><i
+									class="fa-solid fa-circle-check"></i></span>
+							<!-- Rimuovi elemento - RIMUOVI -->
+							<span @click="removeTask(index)" class="badge cancel rounded-pill d-flex"><i
+									class="fa-solid fa-trash-can"></i></span>
+						</div>
 					</li>
 
 				</ol>

@@ -22,7 +22,7 @@ const app = Vue.createApp({
                 done: false,
             };
             console.log(this.newTask)
-            this.tasks.push(this.newTask);
+            this.tasks.push(newTask);
 
         },
 
@@ -30,6 +30,12 @@ const app = Vue.createApp({
 
         removeTask(i) {
             this.tasks.splice(i, 1);
+        },
+
+        doneTask(i) {
+
+            this.tasks.done = true;
+
         }
 
     }
