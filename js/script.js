@@ -23,9 +23,7 @@ const app = Vue.createApp({
             };
             console.log(this.newTask)
             this.tasks.push(newTask);
-
         },
-
 
 
         removeTask(i) {
@@ -33,9 +31,7 @@ const app = Vue.createApp({
         },
 
         doneTask(i) {
-
             this.tasks.done = true;
-
         }
 
     }

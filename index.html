@@ -61,12 +61,14 @@
 
 					<li v-for="(task, index) in tasks" class="list-group-item d-flex align-items-center"
 						:class="(tasks.done)?'did-it': ''">
-						{{task}}
+
+						{{task.text}}
 
 						<div class="icons d-flex align-items-center  ms-auto">
-
+							<!-- Sbarra l'elemento - SBARRA -->
 							<span @click="doneTask(index)" class="badge done rounded-pill d-flex"><i
 									class="fa-solid fa-circle-check"></i></span>
+
 							<!-- Rimuovi elemento - RIMUOVI -->
 							<span @click="removeTask(index)" class="badge cancel rounded-pill d-flex"><i
 									class="fa-solid fa-trash-can"></i></span>
