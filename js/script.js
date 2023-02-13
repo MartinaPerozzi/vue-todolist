@@ -10,6 +10,7 @@ const app = Vue.createApp({
 
             ],
             newTask: {},
+            error: false,
 
         }
 
@@ -21,17 +22,26 @@ const app = Vue.createApp({
                 text: this.newTask.text,
                 done: false,
             };
+            // Controllo numero lettere
             console.log(this.newTask)
-            this.tasks.push(newTask);
+            if (this.newTask.text.length >= 4) {
+                this.tasks.push(newTask);
+                this.error = false;
+
+            } else {
+                this.error = true;
+            }
+
         },
 
-
+        // Rimuovi TASK
         removeTask(i) {
             this.tasks.splice(i, 1);
         },
-
-        doneTask(i) {
-            this.tasks.done = true;
+        // Prova Sbarramento- da capire
+        doneTask() {
+            let doneTaskEl = this.newTask.done = true;
+            console.log(doneTaskEl);
         }
 
     }

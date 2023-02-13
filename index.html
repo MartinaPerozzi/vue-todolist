@@ -42,12 +42,15 @@
 			</div>
 		</div>
 		<div class="container main-area mt-3">
+			<div v-if="error" class="alert alert-danger" role="alert">
+				Inserisci almeno 4 caratteri!
+			</div>
 			<!-- INPUT & BUTTON -->
 			<h2>Add Tasks</h2>
 			<div class="input-group mb-3">
 				<!-- Prendi il valore text in newTask -->
-				<input v-model="newTask.text" type="text" class="form-control" placeholder="New Task"
-					aria-label="Recipient's username" aria-describedby="button-addon2">
+				<input @keyUp.enter="addTask()" v-model="newTask.text" type="text" class="form-control"
+					placeholder="New Task" aria-label="Recipient's username" aria-describedby="button-addon2">
 				<!-- Button al click aggiungi la new Task- AGGIUNGI-->
 				<button @click="addTask()" class="btn add-task-btn" type="button" id="button-addon2">Add
 					Task</button>
@@ -59,14 +62,14 @@
 				<ol class="list-group list-group-numbered">
 					<!-- per ogni task, index dell'oggetto Tasks -->
 
-					<li v-for="(task, index) in tasks" class="list-group-item d-flex align-items-center"
-						:class="(tasks.done)?'did-it': ''">
+					<li v-for="(task, index) in tasks" class="list-group-item d-flex align-items-center">
+						<span :class="(newTask.done)?'did-it': ''">{{task.text}}</span>
 
-						{{task.text}}
+
 
 						<div class="icons d-flex align-items-center  ms-auto">
 							<!-- Sbarra l'elemento - SBARRA -->
-							<span @click="doneTask(index)" class="badge done rounded-pill d-flex"><i
+							<span @click="doneTask(task, index)" class="badge done rounded-pill d-flex"><i
 									class="fa-solid fa-circle-check"></i></span>
 
 							<!-- Rimuovi elemento - RIMUOVI -->
